@@ -44,14 +44,7 @@ const AddTodo: FC<Props> = ({ type, todo, setVisibleModal, setChangeTodo }) => {
             if (data) {
                 toast.success('Todo has been added.');
             }
-            setName('')
-            setDescriptions('')
-            setFile('')
-            if (refFile.current) {
-                refFile.current.value = "";
-            }
-            setChangeTodo(null)
-            setVisibleModal(false)
+            refreshStates()
         } catch (err: any) {
             const error = err.response?.data.message
             toast.error(error)
@@ -72,17 +65,22 @@ const AddTodo: FC<Props> = ({ type, todo, setVisibleModal, setChangeTodo }) => {
                     toast.success('Todo has been updated.');
                 }
             }
-            setName('')
-            setDescriptions('')
-            setFile('')
-            if (refFile.current) {
-                refFile.current.value = "";
-            }
+            refreshStates()
         } catch (err: any) {
             const error = err.response?.data.message
             toast.error(error)
         }
 
+        setVisibleModal(false)
+    }
+    const refreshStates = () => {
+        setName('')
+        setDescriptions('')
+        setFile('')
+        if (refFile.current) {
+            refFile.current.value = "";
+        }
+        setChangeTodo(null)
         setVisibleModal(false)
     }
     return (

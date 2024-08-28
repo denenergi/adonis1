@@ -14,7 +14,6 @@ interface Props {
 }
 
 const TodoCard: FC<Props> = ({ todo, todos, setTodos, setChangeTodo, setVisibleModal }) => {
-
     const editTodoHandler = async () => {
         setVisibleModal(true)
         setChangeTodo(todo)
@@ -34,7 +33,7 @@ const TodoCard: FC<Props> = ({ todo, todos, setTodos, setChangeTodo, setVisibleM
     return (
         <>
             <div className="p-4 basis-1/4 bg-cyan-300 rounded-md hover:scale-105 border-solid border-2 border-white transition duration-300 ease-out hover:ease-in hover:border-black box-border flex justify-between flex-col relative pb-8">
-                <img src={todo?.file ? todo.file : ''} alt="todo" className="w-full rounded-md mb-2 bg-white h-full" />
+                <img src={todo?.file ? `storage/${todo.file}` : `storage/files/empty.png`} alt="todo" className="w-full rounded-md mb-2 bg-white h-full object-cover" />
                 <div>
                     <p className="text-black text-center text-lg uppercase min-h-[28px]">{todo.name}</p>
                     <div className="text-black text-center flex items-center justify-center min-h-[20px]"><p>{todo.descriptions}</p></div>
