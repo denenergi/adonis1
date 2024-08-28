@@ -56,7 +56,9 @@ export default class TodosController {
   async destroy({ request, response }: HttpContext) {
     const todo = await Todo.findOrFail(request.param('id'))
     await todo.delete()
-    await unlink(app.makePath('storage', todo.file))
+    if (todo.file) {
+      await unlink(app.makePath('storage', todo.file))
+    }
     return response.status(200).json({ message: "Deleted", data: todo })
   }
 }
