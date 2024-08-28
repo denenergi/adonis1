@@ -1,0 +1,4 @@
+node ace make:model Todo - create table
+node ace make:migration todos - create migration
+node ace migration:rollback -revert 
+node ace migration:run - run migration
